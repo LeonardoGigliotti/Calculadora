@@ -1,40 +1,52 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
+      <ion-item>
       Calculadora 
-      <ion-button>
+      <ion-button slot="end" size="default" type="reset">
         C
       </ion-button>      
+    </ion-item>
     </ion-title> 
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-<ion-list>
-  <ion-item>Valor 1</ion-item>
+  <ion-list>
+  <ion-item>
+    <ion-label>Valor1: </ion-label>
+    <ion-input type="number" [(ngModel)] = "valor1"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label>Valor2: </ion-label>
+    <ion-input type="number" [(ngModel)] = "valor2"></ion-input>
+  </ion-item>
 </ion-list>
 
-<ion-list>
-  <ion-item>Valor 2</ion-item> 
-</ion-list>
-<ion-list>
-<ion-button>+</ion-button> 
-<ion-button>-</ion-button>
-<ion-button>*</ion-button>
-<ion-button>/</ion-button>
-</ion-list>
-<ion-list>
-  <ion-button>MAIOR</ion-button>
-  <ion-button>MENOR</ion-button>
-</ion-list>
-<ion-list>
-  <ion-item>
-    <ion-label>Resultado:</ion-label>
-  </ion-item>
-</ion-list>
-<ion-list>
-  <ion-item>
-    <ion-label>Conta:</ion-label>
-  </ion-item>
-</ion-list>
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-button  color="dark" expand="full" (click)="add()">+</ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button  color="dark" expand="full" (click)="sub()">-</ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button  color="dark" expand="full" (click)="mult()">*</ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button  color="dark" expand="full" (click)="div()">/</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<ion-item>
+<ion-label>Resultado: <span class="result">{{result}}</span></ion-label>
+</ion-item>
+
+<ion-item>
+<ion-label>Conta: <span class="cont">{{cont}}</span></ion-label>
+</ion-item>
+
 </ion-content>

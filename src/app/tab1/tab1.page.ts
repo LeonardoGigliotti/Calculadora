@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -7,38 +6,25 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
+ valor1;
+ valor2;
+ cont;
+ result;
+  constructor() {}
 
-  mensagem='';
-  textoDigitado='';
-  Valor1='';
-  Valor2='';
-
-
-  constructor(private alertController: AlertController) {}
-
-  async presentAlert() {
-    const alert = await this.alertController.create({
-      header: 'Alert!',
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          handler: () => {
-            this.mensagem = 'Alert canceled';
-          },
-        },
-        {
-          text: 'OK',
-          role: 'confirm',
-          handler: () => {
-            this.mensagem = 'Alert confirmed';
-          },
-        },
-      ],
-    });
-
-    await alert.present();
-
-   
+  add(){
+    this.result = parseInt(this.valor1) + parseInt(this.valor2);
+  }
+  sub(){
+    this.result = parseInt(this.valor1) - parseInt(this.valor2);
+  }
+  mult(){
+    this.result = parseInt(this.valor1) * parseInt(this.valor2);
+  }
+  div(){
+    this.result = parseInt(this.valor1) / parseInt(this.valor2);
+  }
+  conta(){
+    this.cont = this.result;
   }
 }
