@@ -1,17 +1,139 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Calculadora 2
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-item>
+    <ion-label>Operação:</ion-label>
+    <ion-input type="number" [(ngModel)] = "valor1"></ion-input>
+    <ion-input type="number" [(ngModel)] = "valor2"></ion-input>
+  </ion-item>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-item>
+    <ion-label>Resultado: <span class="result">{{result}}</span></ion-label>
+  </ion-item>
+
+ <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button  color="dark" expand="full" (click)="maior()">MC</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button  color="dark" expand="full" (click)="maior()">MR</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button  color="dark" expand="full" (click)="menor()">M+</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button  color="dark" expand="full" (click)="maior()">M-</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button  color="dark" expand="full" (click)="maior()">MS</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button  color="dark" expand="full" (click)="maior()">M^</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button  color="dark" expand="full" (click)="maior()">%</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button  color="dark" expand="full" (click)="menor()">CE</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button  color="dark" expand="full" (click)="maior()">C</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button  color="dark" expand="full" (click)="maior()">x</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button  color="dark" expand="full" (click)="maior()">1/x</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button  color="dark" expand="full" (click)="menor()">x2</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button  color="dark" expand="full" (click)="maior()">2vx</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button  color="dark" expand="full" (click)="div()">/</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button  color="dark" expand="full" (click)="maior()">7</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button  color="dark" expand="full" (click)="menor()">8</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button  color="dark" expand="full" (click)="maior()">9</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button  color="dark" expand="full" (click)="mult()">*</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button  color="dark" expand="full" (click)="maior()">4</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button  color="dark" expand="full" (click)="menor()">5</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button  color="dark" expand="full" (click)="maior()">6</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button  color="dark" expand="full" (click)="sub()">-</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button  color="dark" expand="full" (click)="maior()">1</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button  color="dark" expand="full" (click)="menor()">2</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button  color="dark" expand="full" (click)="maior()">3</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button  color="dark" expand="full" (click)="add()">+</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button  color="dark" expand="full" (click)="maior()">+/-</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button  color="dark" expand="full" (click)="menor()">0</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button  color="dark" expand="full" (click)="maior()">,</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button  color="dark" expand="full" (click)="maior()">=</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>
