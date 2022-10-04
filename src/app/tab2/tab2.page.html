@@ -1,3 +1,4 @@
+
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
@@ -7,133 +8,201 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-item>
-    <ion-label>Operação:</ion-label>
-    <ion-input type="number" [(ngModel)] = "valor1"></ion-input>
-    <ion-input type="number" [(ngModel)] = "valor2"></ion-input>
-  </ion-item>
 
   <ion-item>
-    <ion-label>Resultado: <span class="result">{{result}}</span></ion-label>
+    <ion-label position="floating">Operação</ion-label>
+    <ion-input class="ion-text-right" [(ngModel)]="operacao"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label slot="start"><strong> Resultado: </strong></ion-label>
+    <ion-label class="ion-text-resultado">{{resultado}}</ion-label>
   </ion-item>
 
- <ion-grid>
-    <ion-row>
+  <ion-grid> <!-- começo da grid 1 -->
+    <ion-row class="ion-align-items-center">
       <ion-col>
-        <ion-button  color="dark" expand="full" (click)="maior()">MC</ion-button>
+        <div>
+          <ion-button size="small" expand="block" color="dark">MC</ion-button>
+        </div>
       </ion-col>
       <ion-col>
-        <ion-button  color="dark" expand="full" (click)="maior()">MR</ion-button>
+        <div>
+          <ion-button size="small" expand="block" color="dark">MR</ion-button>
+        </div>
       </ion-col>
       <ion-col>
-        <ion-button  color="dark" expand="full" (click)="menor()">M+</ion-button>
+        <div>
+          <ion-button size="small" expand="block" color="dark">M+</ion-button>
+        </div>
       </ion-col>
       <ion-col>
-        <ion-button  color="dark" expand="full" (click)="maior()">M-</ion-button>
+        <div>
+          <ion-button size="small" expand="block" color="dark">M-</ion-button>
+        </div>
       </ion-col>
       <ion-col>
-        <ion-button  color="dark" expand="full" (click)="maior()">MS</ion-button>
+        <div>
+          <ion-button size="small" expand="block" color="dark">MS</ion-button>
+        </div>
       </ion-col>
       <ion-col>
-        <ion-button  color="dark" expand="full" (click)="maior()">M^</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-button  color="dark" expand="full" (click)="maior()">%</ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button  color="dark" expand="full" (click)="menor()">CE</ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button  color="dark" expand="full" (click)="maior()">C</ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button  color="dark" expand="full" (click)="maior()">x</ion-button>
+        <div>
+          <ion-button size="small" expand="block" color="dark">M^</ion-button>
+        </div>
       </ion-col>
     </ion-row>
-  </ion-grid>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-button  color="dark" expand="full" (click)="maior()">1/x</ion-button>
+  </ion-grid> <!-- final da grid 1 -->
+
+  <ion-grid> <!-- começo da grid 2 -->
+    <ion-row class="ion-align-items-center">
+      <ion-col size="3">
+        <div>
+          <ion-button size="large" expand="block" color="dark">%</ion-button>
+        </div>
+      </ion-col>
+      <ion-col size="3">
+        <div>
+          <ion-button (click)="limparOperacao()" size="large" expand="block" color="dark">CE</ion-button>
+        </div>
       </ion-col>
       <ion-col>
-        <ion-button  color="dark" expand="full" (click)="menor()">x2</ion-button>
+        <div>
+          <ion-button (click)="limparMemoria()" size="large" expand="block" color="dark">C</ion-button>
+        </div>
       </ion-col>
-      <ion-col>
-        <ion-button  color="dark" expand="full" (click)="maior()">2vx</ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button  color="dark" expand="full" (click)="div()">/</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-button  color="dark" expand="full" (click)="maior()">7</ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button  color="dark" expand="full" (click)="menor()">8</ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button  color="dark" expand="full" (click)="maior()">9</ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button  color="dark" expand="full" (click)="mult()">*</ion-button>
+      <ion-col size="3">
+        <div>
+          <ion-button (click)="ApagarCaracter()" size="large" expand="block" color="dark">
+            <ion-icon name="backspace-outline"></ion-icon>
+          </ion-button>
+        </div>
       </ion-col>
     </ion-row>
-  </ion-grid>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-button  color="dark" expand="full" (click)="maior()">4</ion-button>
+  </ion-grid> <!-- final da grid 2 -->
+
+  <ion-grid> <!-- começo da grid 3 -->
+    <ion-row class="ion-align-items-center">
+      <ion-col size="3">
+        <div>
+          <ion-button size="large" expand="block" color="dark">1/x</ion-button>
+        </div>
+      </ion-col>
+      <ion-col size="3">
+        <div>
+          <ion-button size="large" expand="block" color="dark">x²</ion-button>
+        </div>
       </ion-col>
       <ion-col>
-        <ion-button  color="dark" expand="full" (click)="menor()">5</ion-button>
+        <div>
+          <ion-button size="large" expand="block" color="dark">2√x</ion-button>
+        </div>
       </ion-col>
-      <ion-col>
-        <ion-button  color="dark" expand="full" (click)="maior()">6</ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button  color="dark" expand="full" (click)="sub()">-</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-button  color="dark" expand="full" (click)="maior()">1</ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button  color="dark" expand="full" (click)="menor()">2</ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button  color="dark" expand="full" (click)="maior()">3</ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button  color="dark" expand="full" (click)="add()">+</ion-button>
+      <ion-col size="3">
+        <div>
+          <ion-button (click)="adicionarValor('÷')" size="large" expand="block" color="dark">÷</ion-button>
+        </div>
       </ion-col>
     </ion-row>
-  </ion-grid>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-button  color="dark" expand="full" (click)="maior()">+/-</ion-button>
+  </ion-grid> <!-- final da grid 3 -->
+
+  <ion-grid> <!-- começo da grid 4 -->
+    <ion-row class="ion-align-items-center">
+      <ion-col size="3">
+        <div>
+          <ion-button (click)="adicionarValor('7')" size="large" expand="block" color="light">7</ion-button>
+        </div>
+      </ion-col>
+      <ion-col size="3">
+        <div>
+          <ion-button (click)="adicionarValor('8')" size="large" expand="block" color="light">8</ion-button>
+        </div>
       </ion-col>
       <ion-col>
-        <ion-button  color="dark" expand="full" (click)="menor()">0</ion-button>
+        <div>
+          <ion-button (click)="adicionarValor('9')" size="large" expand="block" color="light">9</ion-button>
+        </div>
       </ion-col>
-      <ion-col>
-        <ion-button  color="dark" expand="full" (click)="maior()">,</ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button  color="dark" expand="full" (click)="maior()">=</ion-button>
+      <ion-col size="3">
+        <div>
+          <ion-button (click)="adicionarValor('×')" size="large" expand="block" color="dark">×</ion-button>
+        </div>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> <!-- final da grid 4 -->
+
+  <ion-grid> <!-- começo da grid 5 -->
+    <ion-row class="ion-align-items-center">
+      <ion-col size="3">
+        <div>
+          <ion-button (click)="adicionarValor('4')" size="large" expand="block" color="light">4</ion-button>
+        </div>
+      </ion-col>
+      <ion-col size="3">
+        <div>
+          <ion-button (click)="adicionarValor('5')" size="large" expand="block" color="light">5</ion-button>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          <ion-button (click)="adicionarValor('6')" size="large" expand="block" color="light">6</ion-button>
+        </div>
+      </ion-col>
+      <ion-col size="3">
+        <div>
+          <ion-button (click)="adicionarValor('-')" size="large" expand="block" color="dark">-</ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid> <!-- final da grid 5 -->
+
+  <ion-grid> <!-- começo da grid 6 -->
+    <ion-row class="ion-align-items-center">
+      <ion-col size="3">
+        <div>
+          <ion-button (click)="adicionarValor('1')" size="large" expand="block" color="light">1</ion-button>
+        </div>
+      </ion-col>
+      <ion-col size="3">
+        <div>
+          <ion-button (click)="adicionarValor('2')" size="large" expand="block" color="light">2</ion-button>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          <ion-button (click)="adicionarValor('3')" size="large" expand="block" color="light">3</ion-button>
+        </div>
+      </ion-col>
+      <ion-col size="3">
+        <div>
+          <ion-button (click)="adicionarValor('+')" size="large" expand="block" color="dark">+</ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid> <!-- final da grid 6 -->
+
+  <ion-grid> <!-- começo da grid 7 -->
+    <ion-row class="ion-align-items-center">
+      <ion-col size="3">
+        <div>
+          <ion-button size="large" expand="block" color="light">+/-</ion-button>
+        </div>
+      </ion-col>
+      <ion-col size="3">
+        <div>
+          <ion-button (click)="adicionarValor('0')" size="large" expand="block" color="light">0</ion-button>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          <ion-button size="large" expand="block" color="light">,</ion-button>
+        </div>
+      </ion-col>
+      <ion-col size="3">
+        <div>
+          <ion-button  size="large" expand="block" color="dark">=</ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid> <!-- final da grid 7 -->
 
 </ion-content>
