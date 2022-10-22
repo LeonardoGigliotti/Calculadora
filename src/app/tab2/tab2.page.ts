@@ -1,7 +1,7 @@
-import { evaluate } from 'mathjs';
-import { IMemoria } from '../models/IMemoria.model';
-import { Component, OnInit } from '@angular/core';
+import { IMemoria } from './../models/IMemoria.model';
 import { Component } from '@angular/core';
+import { Validators } from '@angular/forms';
+import { evaluate } from 'mathjs';
 import { AlertController } from '@ionic/angular';
 
 @Component({
@@ -9,60 +9,48 @@ import { AlertController } from '@ionic/angular';
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss']
 })
-export class Tab2Page implements OnInit {
+export class Tab2Page {
+
   operacao = '';
   resultado = '';
-  numero = false; 
+  numero = false;
   caracter = true;
-  caracteres = ['.', '/', '*', '+', '-'];
-  
-  memoria:IMemoria[] = [];
-  
-  constructor(private alertController: AlertController) {}
-  
-  ngOnInit() {}
+  caracteres = ['.', '/', '*', '-', '+'];
 
-  async presentAlert() {
+  memoria: IMemoria[] = [];
+
+  constructor(private alertController: AlertController) {}
+
+  async presentAlert(titulo: string, mensagem: string) {
     const alert = await this.alertController.create({
-      header: 'Alert',
-      subHeader: 'Important message',
-      message: 'This is an alert!',
+      header: titulo,
+      message: mensagem,
       buttons: ['OK'],
     });
 
     await alert.present();
   }
-}
 
-  adicionarMemoria(){
-    if(this.operacao != '' && this.resultado != '') {
-
-      const memoria: IMemoria = {
+  async adicionarMemoria(){
+    if (this.operacao !== '' && this.resultado !== ''){
+      const memoria: IMemoria ={
         operacao: this.operacao,
         resultado: Number(this.resultado),
       };
       this.memoria.push(memoria);
-      
-    }else if (this.operacao != '' && this.resultado == ''){
-      this.realizarOperacao();
+    }else if(this.operacao !== '' && this.resultado === ''){
+      this.calcularOperacao();
 
-      const memoria: IMemoria = {
+      const memoria: IMemoria ={
         operacao: this.operacao,
         resultado: Number(this.resultado),
-    };
+      };
       this.memoria.push(memoria);
-    }else {
-      this.presentAlert('Aviso!' , 'Nenhum valor para adicionar...');
+    }else{
+      this.presentAlert('Erro!', 'Não foi possivel salvar');
     }
-    console.log(this.memoria);
-  }
 
-  realizarOperacao(){
-    try {
-    this.resultado = evaluate(this.operacao);
-    } catch (err) {
-      this.resultado = 'inválido!';
-    }
+    console.log(this.memoria);
   }
 
   adicionarValor(valor: string){
@@ -76,30 +64,36 @@ export class Tab2Page implements OnInit {
       this.numero = false;
     }
   }
+  limparOperacao(){
+    this.operacao = '';
+    this.numero = false;
+  }
+  interValor() {
+    //
+  }
+
+  calcularOperacao() {
+    try {
+    this.resultado = evaluate(this.operacao);
+    } catch (err) {
+      this.resultado = 'Inválido';
+    }
+  }
+
 
   limparMemoria(){
     this.operacao = '';
     this.resultado = '';
     this.numero = false;
   }
-
-  limparOperacao(){
-    this.operacao = '';
-    this.numero = false;
-  }
-
-  inverterValor(){
-    //alterna o numero entre positivo e negativo
-  }
-
-  apagarCaracter(){
+  limparCaracter(){
     if (this.operacao.length > 0){
-      this.operacao = this.operacao.substring(0, this.operacao.length - 1);
+    this.operacao = this.operacao.substring(0, this.operacao.length -1);
     }
 
-    const ultimo = this.operacao.substring(this.operacao.length, 1);
+    const ultimo = this.operacao.substring(this.operacao.length,1);
     this.caracter = this.caracteres.includes(ultimo);
-    
+
     console.log(ultimo);
 
     if (!this.caracter) {
