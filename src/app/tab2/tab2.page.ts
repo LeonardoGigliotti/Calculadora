@@ -3,6 +3,9 @@ import { Component } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { evaluate } from 'mathjs';
 import { AlertController } from '@ionic/angular';
+import { Component } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { ModalExampleComponent } from './modal-example.component';
 
 @Component({
   selector: 'app-tab2',
@@ -19,7 +22,9 @@ export class Tab2Page {
 
   memoria: IMemoria[] = [];
 
-  constructor(private alertController: AlertController) {}
+  constructor(
+    private alertController: AlertController,
+    private modalCtrl: ModalController) {}
 
   async presentAlert(titulo: string, mensagem: string) {
     const alert = await this.alertController.create({
@@ -31,8 +36,30 @@ export class Tab2Page {
     await alert.present();
   }
 
-  async adicionarMemoria(){
-    if (this.operacao !== '' && this.resultado !== ''){
+  mostrarMemoria() {
+    const memoria:IMemoria = this.memoria[this.memoria.length - 1];
+  this.operacao = memoria.operacao;
+  this.resultado = memoria.resultado.toString();
+  console.log('Mostrou: ', this.memoria)
+  }
+
+  somarNaMemoria() {
+    if(this.operacao != ''){
+    this.realizarOperacao();  
+    const memoria:IMemoria = this.memoria[this.memoria.length - 1];
+    const novaMemoria: IMemoria = {
+      operacao: `${memoria.resultado} + ${this.resultado}`,
+      resultado: memoria.resultado + Number(this.resultado),
+    };
+    this.memoria.push(novaMemoria);
+    }
+  }
+
+  subtraiNaMemoria() {}
+
+
+  adicionarMemoria(){
+    if (this.operacao != '' && this.resultado != ''){
       const memoria: IMemoria ={
         operacao: this.operacao,
         resultado: Number(this.resultado),
